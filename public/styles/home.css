@@ -11,7 +11,7 @@ header {
 
 #bg {
   grid-area: left;
-  background: url("/htmls/assets/ilustração-bg-img.svg") no-repeat top/contain;
+  background: url("/images/ilustração-bg-img.svg") no-repeat top/contain;
   background-position: -9rem;
 }
 
