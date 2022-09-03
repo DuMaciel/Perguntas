@@ -42,14 +42,12 @@
             <section id="question-form">
                 <h2>Faça sua pergunta</h2>
                 <form action="/question/create/<%= roomId %>" method="POST">
-                    <label class="sr-only" for-id="question">O que você quer perguntar?</label
-            >
+                <label class="sr-only" for-id="question">O que você quer perguntar?</label>
             <textarea
-              name=""
+              name="question"
               id="question"
               placeholder="O que você quer perguntar?"
             ></textarea>
-
             <footer>
               <div>
                 <img src="/images/lock_black_24dp 1.svg" alt="Cadeado" /> Essa
@@ -62,90 +60,46 @@
         <section id="question">
           <h2 class="sr-only">Perguntas da comunidade</h2>
           <div class="questions">
+
+            <% questions.forEach(questions => { %>
             <div class="question-wrapper">
               <div class="question-content">
                 <div class="user">
                   <img src="/images/user.svg" alt="Usuario" />
                 </div>
                 <div class="question">
-                  <p>Qual a diferença entre const, var e let no javaScript?</p>
+                  <p><%= questions.title %></p>
                 </div>
               </div>
               <div class="actions">
-                <a href="#" class="check" data-id="2">
+                <a href="#" class="check" data-id="<%= questions.id_question %>">
                   <img src="/images/check 1.svg" alt="Marcar como lida" />
                   Marcar como lida
                 </a>
-                <a href="#" class="delete" data-id="2">
+                <a href="#" class="delete" data-id="<%= questions.id_question %>">
                   <img src="/images/trash 1.svg" alt="Excluir" /> Excluir
                 </a>
               </div>
             </div>
+            <% }) %>
 
-            <div class="question-wrapper">
-              <div class="question-content">
-                <div class="user">
-                  <img src="/images/user.svg" alt="Usuario" />
-                </div>
-                <div class="question">
-                  <p>Qual a diferença entre const, var e let no javaScript?</p>
-                </div>
-              </div>
-              <div class="actions">
-                <a href="#" class="check" data-id="3">
-                  <img src="/images/check 1.svg" alt="Marcar como lida" />
-                  Marcar como lida
-                </a>
-                <a href="#" class="delete" data-id="3">
-                  <img src="/images/trash 1.svg" alt="Excluir" /> Excluir
-                </a>
-              </div>
-            </div>
-
-            <div class="question-wrapper">
-              <div class="question-content">
-                <div class="user">
-                  <img src="/images/user.svg" alt="Usuario" />
-                </div>
-                <div class="question">
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad
-                    fuga, iste libero, enim consequatur exercitationem,
-                    quibusdam dolor est voluptatem tempora omnis. Vero est error
-                    voluptas qui culpa ullam neque doloribus? Lorem, ipsum dolor
-                    sit amet consectetur adipisicing elit. Ad fuga, iste libero,
-                    enim consequatur exercitationem, quibusdam dolor est
-                    voluptatem tempora omnis. Vero est error voluptas qui culpa
-                    ullam neque doloribus?
-                  </p>
-                </div>
-              </div>
-              <div class="actions">
-                <a href="#" class="check" data-id="4">
-                  <img src="/images/check 1.svg" alt="Marcar como lida" />
-                  Marcar como lida
-                </a>
-                <a href="#" class="delete" data-id="4">
-                  <img src="/images/trash 1.svg" alt="Excluir" /> Excluir
-                </a>
-              </div>
-            </div>
-
+            <% questionsRead.forEach(questionsRead => { %>
             <div class="question-wrapper read">
               <div class="question-content">
                 <div class="user">
                   <img src="/images/user.svg" alt="Usuario" />
                 </div>
                 <div class="question">
-                  <p>Qual a diferença entre const, var e let no javaScript?</p>
+                  <p><%= questionsRead.title %></p>
                 </div>
               </div>
               <div class="actions">
-                <a href="#" class="delete" data-id="1">
+                <a href="#" class="delete" data-id="<%= questionsRead.id_question %>">
                   <img src="/images/trash 1.svg" alt="Excluir" /> Excluir
                 </a>
               </div>
             </div>
+            <% }) %>
           </div>
         </section>
       </main>
