@@ -141,3 +141,24 @@
     padding: 1.4rem;
 }
 
+.noQuestions{
+    text-align: center;
+    margin-top: 5rem;
+}
+.noQuestions img{
+    margin-bottom: 1.2rem;
+}
+.noQuestions p{
+    color: var(--grey-blue);
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+}
+.noQuestions .title{
+    color: var(--black);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1.3rem;
+}
