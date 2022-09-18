@@ -8,7 +8,8 @@ const initDb = {
     await db.exec(`
         CREATE TABLE rooms (
             id_room INTEGER PRIMARY KEY,
-            pass TEXT
+            pass TEXT,
+            create_date DATETIME
         );`)
 
     await db.exec(`

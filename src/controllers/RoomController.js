@@ -20,10 +20,11 @@ module.exports = {
         existRoom = roomExist[0] == null
 
         if( existRoom){
-        await db.run(`INSERT INTO rooms (id_room,pass) 
-                      VALUES (${roomId},${pass})`);
-
+        
+        await db.run(`INSERT INTO rooms (id_room,pass,create_date) 
+                      VALUES (${roomId},${pass},DATETIME('now','-3 hours'))`);
         }
+        
     }while(! existRoom);
     await db.close()
 
