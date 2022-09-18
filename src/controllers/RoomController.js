@@ -15,17 +15,16 @@ module.exports = {
         roomId += Math.floor(Math.random()*1000000)
         }while(roomId<100000)
             
-      
-        const roomsExistIds = await db.all(`SELECT id_room FROM rooms`)
-        
-        existRoom = roomsExistIds.some(roomsExistIds => roomsExistIds === roomId)
+        const roomExist = await db.all(`SELECT id_room FROM rooms WHERE id_room = ${roomId}`)
 
-        if(! existRoom){
+        existRoom = roomExist[0] == null
+
+        if( existRoom){
         await db.run(`INSERT INTO rooms (id_room,pass) 
                       VALUES (${roomId},${pass})`);
 
         }
-    }while(existRoom);
+    }while(! existRoom);
     await db.close()
 
 
@@ -46,13 +45,21 @@ module.exports = {
         res.render("room", {roomId: roomId, questions: questions, questionsRead, isNoQuestions})
     },
 
-    enter(req, res){
+    async enter(req, res){
         const roomId = req.body.roomId
+        let roomE = true
 
+        const db = await Database()
+
+        const roomExist = await db.all(`SELECT id_room FROM rooms WHERE id_room = ${roomId}`)
+
+        roomE = roomExist[0] == null
+        
+        if(! roomE){
+        await db.close()
         res.redirect(`/room/${roomId}`)
+        } else {
+            res.render('roomincorrect.ejs', {roomId: roomId})
+        } 
     }
-
 }
-
-
-
