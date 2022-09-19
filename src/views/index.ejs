@@ -1,4 +1,4 @@
-<!DOCTYPE html>/
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +12,10 @@
     <!-----fonts---->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Poppins:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Document</title>
   </head>
@@ -20,7 +23,7 @@
     <div id="home" class="content">
       <header>
         <a href="/">
-        <img src="/images/logo.svg" alt="Logo Site" />
+          <img src="/images/logo.svg" alt="Logo Site" />
         </a>
       </header>
 
@@ -30,11 +33,7 @@
       </div>
 
       <main>
-        <div class="container">
-
-          <%- include(`parts/${page}`) %>
-
-        </div>
+        <div class="container"><%- include(`parts/${page}`) %></div>
       </main>
     </div>
   </body>

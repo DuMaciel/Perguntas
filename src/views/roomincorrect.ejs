@@ -1,11 +1,9 @@
 <html>
-    <head>
-        <title>
-            Senha incorreta
-        </title>
-        <script>
-            confirm('A sala #<%= roomId %> não existe!')
-            window.location.replace('/')
-        </script>
-    </head>
+  <head>
+    <title>Sala inexistente</title>
+    <script>
+      alert("A sala #<%= roomId %> não existe!");
+      window.location.replace("/");
+    </script>
+  </head>
 </html>

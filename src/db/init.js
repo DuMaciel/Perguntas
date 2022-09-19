@@ -1,23 +1,23 @@
 const Database = require("./config")
 
 const initDb = {
-    async init(){
+    async init() {
 
-    const db = await Database()
+        const db = await Database()
 
-    await db.exec(`
+        await db.exec(`
         CREATE TABLE rooms (
             id_room INTEGER PRIMARY KEY,
             pass TEXT,
             create_date DATETIME
         );`)
 
-    await db.exec(`
+        await db.exec(`
         CREATE TABLE questions (
             id_question INTEGER PRIMARY KEY AUTOINCREMENT,
-            id_room INT,
+            id_room INTEGER,
             title TEXT,
-            read INT
+            read INTEGER
         );`)
 
         await db.close()
