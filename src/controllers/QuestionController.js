@@ -19,7 +19,6 @@ module.exports = {
             res.render('passincorrect.ejs', { roomId: roomId })
         }
 
-
     },
     async create(req, res) {
         const db = await Database()

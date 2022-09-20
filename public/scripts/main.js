@@ -28,9 +28,10 @@ function handleClick(event, check = true) {
 
     const slug = check ? "check" : "delete"
 
-    const questionId = event.target.dataset.id
 
+    const questionId = document.querySelector("#id_question").dataset.id
     form.setAttribute("action", `/question/${roomId}/${questionId}/${slug}`)
+
 
     modalTitle.innerHTML = check ? "Marcar como lido" : "Excluir"
     modalDescription.innerHTML = check ? "Tem certeza que deseja marcar como lida esta pergunta?" : "Tem certeza que deseja excluir esta pergunta?"
@@ -46,5 +47,6 @@ buttonId.addEventListener("click", copiar)
 async function copiar() {
 
     const roomId = document.querySelector("#room-id").dataset.id
+    console.log(roomId)
     await navigator.clipboard.writeText(roomId)
 }
