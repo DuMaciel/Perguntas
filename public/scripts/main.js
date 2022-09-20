@@ -11,15 +11,17 @@ const checkButtons = document.querySelectorAll(".actions a.check")
 
 
 checkButtons.forEach(button => {
-    button.addEventListener("click", handleClick)
+    const questionId = button.getAttribute("data-id")
+    button.addEventListener("click", (event) => handleClick(event, questionId, true))
 })
 
 const deleteButton = document.querySelectorAll(".actions a.delete")
 deleteButton.forEach(button => {
-    button.addEventListener("click", (event) => handleClick(event, false))
+    const questionId = button.getAttribute("data-id")
+    button.addEventListener("click", (event) => handleClick(event, questionId, false))
 })
 
-function handleClick(event, check = true) {
+function handleClick(event, questionId, check) {
     event.preventDefault()
 
     const form = document.querySelector(".modal form")
@@ -28,10 +30,7 @@ function handleClick(event, check = true) {
 
     const slug = check ? "check" : "delete"
 
-
-    const questionId = document.querySelector("#id_question").dataset.id
     form.setAttribute("action", `/question/${roomId}/${questionId}/${slug}`)
-
 
     modalTitle.innerHTML = check ? "Marcar como lido" : "Excluir"
     modalDescription.innerHTML = check ? "Tem certeza que deseja marcar como lida esta pergunta?" : "Tem certeza que deseja excluir esta pergunta?"
