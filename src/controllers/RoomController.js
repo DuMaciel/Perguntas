@@ -65,8 +65,18 @@ module.exports = {
             }
         } else {
             res.render('roomincorrect.ejs', { roomId: null })
+            clearDB()
         }
     },
 }
 
 
+async function clearDB(){
+    const db = await Database()
+    const rooms = await db.all(`SELECT id_room FROM rooms WHERE STRFTIME('%Y-%m-%d %H:%M:%S',create_date) < STRFTIME('%Y-%m-%d %H:%M:%S',DATETIME('now','-8 hours'))`)
+    console.log(rooms)
+    for(i=0; i<rooms.length; i++){
+        await db.run(`DELETE FROM questions WHERE id_room = ${rooms[i].id_room}`)
+        await db.run(`DELETE FROM rooms WHERE id_room = ${rooms[i].id_room}`)
+    }
+}
