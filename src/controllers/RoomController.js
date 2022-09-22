@@ -35,6 +35,8 @@ module.exports = {
     },
     async open(req, res) {
         const db = await Database()
+        const withError = req.query.error;
+
         const roomId = req.params.room
         const questions = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId} AND read = 0`)
         const questionsRead = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId} AND read = 1`)
@@ -45,7 +47,7 @@ module.exports = {
                 isNoQuestions = true
             }
         }
-        res.render("room", { roomId: roomId, questions: questions, questionsRead, isNoQuestions })
+        res.render("room", { roomId: roomId, questions: questions, questionsRead, isNoQuestions, withError })
     },
 
     async enter(req, res) {
@@ -71,11 +73,11 @@ module.exports = {
 }
 
 
-async function clearDB(){
+async function clearDB() {
     const db = await Database()
     const rooms = await db.all(`SELECT id_room FROM rooms WHERE STRFTIME('%Y-%m-%d %H:%M:%S',create_date) < STRFTIME('%Y-%m-%d %H:%M:%S',DATETIME('now','-8 hours'))`)
     console.log(rooms)
-    for(i=0; i<rooms.length; i++){
+    for (i = 0; i < rooms.length; i++) {
         await db.run(`DELETE FROM questions WHERE id_room = ${rooms[i].id_room}`)
         await db.run(`DELETE FROM rooms WHERE id_room = ${rooms[i].id_room}`)
     }

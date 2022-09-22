@@ -49,3 +49,6 @@ async function copiar() {
     console.log(roomId)
     await navigator.clipboard.writeText(roomId)
 }
+
+
+

@@ -7,6 +7,7 @@ module.exports = {
         const action = req.params.action;
         const password = req.body.password;
 
+
         const verifyRoom = await db.get(`SELECT * FROM rooms WHERE id_room = ${roomId}`)
         if (verifyRoom.pass == password) {
             if (action == "delete") {
@@ -16,7 +17,7 @@ module.exports = {
             }
             res.redirect(`/room/${roomId}`)
         } else {
-            res.render('passincorrect.ejs', { roomId: roomId })
+            res.redirect(`/room/${roomId}?error=true`)
         }
 
     },
