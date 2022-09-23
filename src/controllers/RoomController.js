@@ -63,10 +63,10 @@ module.exports = {
                 await db.close()
                 res.redirect(`/room/${roomId}`)
             } else {
-                res.redirect('/?error=true')
+                res.redirect(`/?error=${roomId}`)
             }
         } else {
-            res.redirect('/?error=true')
+            res.redirect(`/?error=${roomId}`)
             clearDB()
         }
     },
