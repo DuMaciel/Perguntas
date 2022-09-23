@@ -49,7 +49,7 @@ module.exports = {
 
 function teste(texto) {
     for (i = 0; i < texto.length; i++) {
-        if ((texto[i] >= 'A' && texto[i] <= 'Z') || (texto[i] >= 'a' && texto[i] <= 'z')) {
+        if ((texto[i] >= 'A' && texto[i] <= 'Z') || (texto[i] >= 'a' && texto[i] <= 'z') || (texto[i] >= '0' && texto[i] <= '9')) {
             return true;
         }
     }

@@ -1,5 +1,6 @@
 
 import Modal from './modal.js'
+import ModalWarning from './modalWarning.js'
 
 const modal = Modal()
 
@@ -52,3 +53,14 @@ async function copiar() {
 
 
 
+
+const buttonCancelWarning = document.querySelector('.button.cancel.warning')
+
+let url = document.URL
+url = url.slice(0, url.indexOf('?'))
+
+buttonCancelWarning.addEventListener('click', cancelar)
+
+function cancelar(){
+    window.location.href = url
+}
