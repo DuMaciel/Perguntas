@@ -17,7 +17,7 @@ module.exports = {
             }
             res.redirect(`/room/${roomId}`)
         } else {
-            res.redirect(`/room/${roomId}?error=true`)
+            res.redirect(`/room/${roomId}?error=2`)
         }
 
     },
@@ -29,7 +29,7 @@ module.exports = {
 
 
         if (!teste(question)) {
-            res.render('questionincorrect.ejs', { roomId: roomId })
+            res.redirect(`/room/${roomId}?error=1`)
         } else {
 
             await db.run(`INSERT INTO questions(

@@ -1,6 +1,6 @@
 
 import Modal from './modal.js'
-import ModalWarning from './modalWarning.js'
+
 
 const modal = Modal()
 
@@ -24,7 +24,7 @@ deleteButton.forEach(button => {
 
 function handleClick(event, questionId, check) {
     event.preventDefault()
-
+    console.log("entrou")
     const form = document.querySelector(".modal form")
 
     const roomId = document.querySelector("#room-id").dataset.id
@@ -61,6 +61,6 @@ url = url.slice(0, url.indexOf('?'))
 
 buttonCancelWarning.addEventListener('click', cancelar)
 
-function cancelar(){
+function cancelar() {
     window.location.href = url
 }

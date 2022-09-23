@@ -145,20 +145,23 @@
     </div>
 
     <!-- Senha incorreta -wrapper-->
-    <div class="modal-warning <%= withError ? 'active' : '' %> pass-incorect">
+    <div
+      class="modal-warning <% if(withError==1 || withError==2){ %> active <% }else{ %>  <% } %> pass-incorect"
+    >
       <div class="modal">
         <div class="title">
           <img src="/images/warning.png" alt="warning" />
           <h2>Atenção</h2>
         </div>
-        <p>A senha digitada está incorreta!</p>
+        <p>
+          <%= withError==1 ? 'A questão digitada não tem conteúdo!' : 'A senha digitada está incorreta!' %>
+        </p>
 
         <div class="buttons">
-          <div 
-          href="#"
-          class="button grey cancel warning">OK</div>
+          <div href="#" class="button grey cancel warning">OK</div>
         </div>
       </div>
     </div>
   </body>
 </html>
+
