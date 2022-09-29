@@ -1,19 +1,24 @@
-const express = require("express");
-const route = require("./route");
+
+const http = require('http')
 const path = require("path");
 
-const server = express();
+const express = require("express");
 
+const route = require("./route");
+
+const app = express();
+const server = http.createServer(app)
 const PORT = process.env.PORT || 3000;
 
-server.set("view engine", "ejs");
+app.set("view engine", "ejs");
 
-server.use(express.static("public"));
+app.use(express.static("public"));
 
-server.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
-server.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
-server.use(route);
+app.use(route);
+
 
 server.listen(PORT, () => console.log("RODANDO"));
