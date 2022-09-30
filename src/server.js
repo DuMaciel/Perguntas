@@ -3,13 +3,14 @@ const http = require('http')
 const path = require("path");
 
 const express = require("express");
-const socketIO = require('socket.io');
 
 const route = require("./route");
+const getIO = require('./io')
 
 const app = express();
 const server = http.createServer(app);
-const io = new socketIO.Server(server);
+getIO(server);
+
 const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
@@ -21,10 +22,6 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }))
 
 app.use(route);
-
-io.on('connection', (socket) => {
-    console.log('user connected', socket.id);
-});
 
 server.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 

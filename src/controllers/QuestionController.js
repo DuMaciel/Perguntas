@@ -1,4 +1,6 @@
 const Database = require('../db/config')
+const getIO = require('../io')
+
 module.exports = {
     async index(req, res) {
         const db = await Database()
@@ -15,6 +17,7 @@ module.exports = {
             } else if (action == "check") {
                 await db.run(`UPDATE questions SET  read = 1 WHERE id_question = ${questionId}`)
             }
+            getIO().emit(`update question ${roomId}`);
             res.redirect(`/room/${roomId}`)
         } else {
             res.redirect(`/room/${roomId}?error=2`)
@@ -41,6 +44,7 @@ module.exports = {
             ${roomId},
             0
         )`)
+            getIO().emit(`update question ${roomId}`);
             res.redirect(`/room/${roomId}`)
         }
     }

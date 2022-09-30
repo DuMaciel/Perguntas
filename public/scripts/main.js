@@ -47,7 +47,6 @@ buttonId.addEventListener("click", copiar)
 async function copiar() {
 
     const roomId = document.querySelector("#room-id").dataset.id
-    console.log(roomId)
     await navigator.clipboard.writeText(roomId)
 }
 
@@ -64,3 +63,5 @@ buttonCancelWarning.addEventListener('click', cancelar)
 function cancelar() {
     window.location.href = url
 }
+
+
