@@ -162,3 +162,14 @@
     font-size: 1.8rem;
     margin-bottom: 1.3rem;
 }
+
+/*========= MEDIA QUERIES =========*/
+@media (max-width: 540px) {
+    #room header {
+        flex-direction: column;
+   }
+   #room header a{
+    margin-bottom: 2remj;
+}
+
+}

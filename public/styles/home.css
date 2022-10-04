@@ -20,6 +20,7 @@ main {
   display: flex;
   align-items: center;
   margin-top: -5rem;
+  margin-right: 2rem;
 }
 
 main .container {
@@ -86,3 +87,29 @@ button,
   bottom: -15rem;
   right: 5.6rem;
 }
+
+/*========= MEDIA QUERIES =========*/
+@media (max-width: 600px) {
+  
+  .content {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 11.4rem 1fr;
+    grid-template-areas: "header"
+                         "right";
+  }
+  #bg {
+    background: transparent;
+    grid-area: right;
+ }
+  main {
+    justify-content: center;
+    margin-right: 0;
+  }
+  
+  main .container {
+  
+    width: min(36.3rem, 80%);
+  }
+
+ }

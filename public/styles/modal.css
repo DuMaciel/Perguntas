@@ -114,3 +114,14 @@
   margin-bottom: 2.4rem;
   color: var(--grey-dark);
 }
+
+/*========= MEDIA QUERIES =========*/
+@media (max-width: 540px) {
+  .modal-wrapper .modal input {
+    padding: 0;
+    width: min(90%, 30.2rem);
+  }
+  .modal-warning .modal {
+    padding: 0;
+  }
+}
