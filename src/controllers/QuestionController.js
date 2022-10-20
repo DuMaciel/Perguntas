@@ -17,7 +17,8 @@ module.exports = {
             } else if (action == "check") {
                 await db.run(`UPDATE questions SET  read = 1 WHERE id_question = ${questionId}`)
             }
-            getIO().emit(`update question ${roomId}`);
+            const questions = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId}`)            
+            getIO().emit(`update question ${roomId}`,questions);
             res.redirect(`/room/${roomId}`)
         } else {
             res.redirect(`/room/${roomId}?error=2`)
@@ -44,7 +45,8 @@ module.exports = {
             ${roomId},
             0
         )`)
-            getIO().emit(`update question ${roomId}`);
+        const questions = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId}`)            
+        getIO().emit(`update question ${roomId}`,questions);
             res.redirect(`/room/${roomId}`)
         }
     }

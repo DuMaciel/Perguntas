@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const socket = io();
     const textArea = document.getElementById("questionText");
     const roomId = document.getElementById("room-id").dataset.id;
+    const questions = document.getElementById("question");
 
 
     //Não atualizar o site enquanto está em digitação continua
@@ -40,8 +41,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    socket.on(`update question ${roomId}`, () => {
-        refresh();
+    socket.on(`update question ${roomId}`, (questionsVetor) => {
+            console.log(questionsVetor);
+            questions.innerHTML = "";
+            questionsVetor.forEach((questão) => {
+                let read = "read";
+                let check = '';
+                console.log(questão.read)
+                if(questão.read==0){
+                    read = "";
+                    check = `<a
+                    href=""
+                    class="check"
+                    data-id="${questão.id_question}"
+                    >
+                    <img src="/images/check 1.svg" alt="Marcar como lida" />
+                      Marcar como lida
+                    </a>`;
+                }
+                questions.innerHTML += `
+                <div class="question-wrapper ${read}">
+                  <div class="question-content">
+                    <div class="user">
+                      <img src="/images/user.svg" alt="Usuario" />
+                    </div>
+                    <div class="question">
+                      <p>${questão.title}</p>
+                    </div>
+                  </div>
+                  <div class="actions">
+                  ${check}
+                    <a
+                      href=""
+                      class="delete"
+                      data-id="${questão.id_question}"
+                    >
+                      <img src="/images/trash 1.svg" alt="Excluir" /> Excluir
+                    </a>
+                  </div>
+                </div>
+                `});
     });
 
 
@@ -54,4 +93,3 @@ function refresh(){
 }
 
 });
-
