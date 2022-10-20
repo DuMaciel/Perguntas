@@ -1,5 +1,3 @@
-console.log("teste")
-
 const modalWarning = document.querySelector('.modal-warning')
 let url = document.URL
 let urlError = url.slice(url.indexOf('?') + 1, url.indexOf('='))
@@ -11,7 +9,6 @@ if(texto != null)
 texto.innerHTML = 'A sala ' + sala + ' não existe!'
 
 if (urlError == 'error') {
-    console.log(modalWarning)
     modalWarning.classList.add('active')
 }
 
