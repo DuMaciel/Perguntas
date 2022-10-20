@@ -1,6 +1,7 @@
 
 import Modal from './modal.js'
 
+document.addEventListener('DOMContentLoaded', () => {
 
 const modal = Modal()
 
@@ -70,4 +71,4 @@ function cancelar() {
 }
 
 
-
+});

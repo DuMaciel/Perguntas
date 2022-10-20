@@ -43,24 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     socket.on(`update question ${roomId}`, (questionsVetor) => {
             console.log(questionsVetor);
+            const questionsRead = questionsVetor.filter((value) => {return value.read==1});
+            const questionsNotRead = questionsVetor.filter((value) => {return value.read==0});
             questions.innerHTML = "";
-            questionsVetor.forEach((questão) => {
-                let read = "read";
-                let check = '';
-                console.log(questão.read)
-                if(questão.read==0){
-                    read = "";
-                    check = `<a
-                    href=""
-                    class="check"
-                    data-id="${questão.id_question}"
-                    >
-                    <img src="/images/check 1.svg" alt="Marcar como lida" />
-                      Marcar como lida
-                    </a>`;
-                }
+            questionsNotRead.forEach((questão) => {
                 questions.innerHTML += `
-                <div class="question-wrapper ${read}">
+                <div class="question-wrapper">
                   <div class="question-content">
                     <div class="user">
                       <img src="/images/user.svg" alt="Usuario" />
@@ -70,7 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                   </div>
                   <div class="actions">
-                  ${check}
+                    <a
+                    href=""
+                    class="check"
+                    data-id="${questão.id_question}"
+                    >
+                    <img src="/images/check 1.svg" alt="Marcar como lida" />
+                      Marcar como lida
+                    </a>
                     <a
                       href=""
                       class="delete"
@@ -81,6 +76,32 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                 </div>
                 `});
+              questionsRead.forEach((questão) => {
+                questions.innerHTML += `
+                <div class="question-wrapper read">
+                  <div class="question-content">
+                    <div class="user">
+                      <img src="/images/user.svg" alt="Usuario" />
+                    </div>
+                    <div class="question">
+                      <p>${questão.title}</p>
+                    </div>
+                  </div>
+                  <div class="actions">
+                    <a
+                      href=""
+                      class="delete"
+                      data-id="${questão.id_question}"
+                    >
+                      <img src="/images/trash 1.svg" alt="Excluir" /> Excluir
+                    </a>
+                  </div>
+                </div>
+                `});
+                window.document.dispatchEvent(new Event("DOMContentLoaded", {
+                  bubbles: true,
+                  cancelable: true
+                }));
     });
 
 
