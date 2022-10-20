@@ -23,6 +23,11 @@
     <script src="/scripts/socket.js"></script>
     <script src="/scripts/main.js" defer type="module"></script>
     
+    <script>
+      function submitQuestion (e) {
+        console.log(e);
+      }
+    </script>
 
     <title>Perguntas e Respostas</title>
   </head>
@@ -46,7 +51,7 @@
       <main>
         <section id="question-form">
           <h2>Faça sua pergunta</h2>
-          <form action="/question/create/<%= roomId %>" method="POST">
+          <form id="question-form-form">
             <label class="sr-only" for-id="question"
               >O que você quer perguntar?</label
             >
@@ -60,7 +65,11 @@
                 <img src="/images/lock_black_24dp 1.svg" alt="Cadeado" /> Essa
                 pergunta é anônima
               </div>
-              <button onclick="sessionStorage.clear()">Enviar</button>
+              <button
+                id="enviar"
+                type="submit"
+             
+              >Enviar</button>
             </footer>
           </form>
         </section>

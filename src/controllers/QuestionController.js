@@ -17,8 +17,8 @@ module.exports = {
             } else if (action == "check") {
                 await db.run(`UPDATE questions SET  read = 1 WHERE id_question = ${questionId}`)
             }
-            const questions = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId}`)            
-            getIO().emit(`update question ${roomId}`,questions);
+            const questions = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId}`)
+            getIO().emit(`update question ${roomId}`, questions);
             res.redirect(`/room/${roomId}`)
         } else {
             res.redirect(`/room/${roomId}?error=2`)
@@ -30,10 +30,11 @@ module.exports = {
         const question = req.body.question
         const roomId = req.params.room
 
+        console.log(JSON.stringify({ question, roomId }, null, 2));
 
 
         if (!teste(question)) {
-            res.redirect(`/room/${roomId}?error=1`)
+            res.send();
         } else {
 
             await db.run(`INSERT INTO questions(
@@ -45,9 +46,9 @@ module.exports = {
             ${roomId},
             0
         )`)
-        const questions = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId}`)            
-        getIO().emit(`update question ${roomId}`,questions);
-            res.redirect(`/room/${roomId}`)
+            const questions = await db.all(`SELECT * FROM questions WHERE id_room = ${roomId}`)
+            getIO().emit(`update question ${roomId}`, questions);
+            res.send();
         }
     }
 }

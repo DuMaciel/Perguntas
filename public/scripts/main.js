@@ -32,7 +32,7 @@ function handleClick(event, questionId, check) {
     const slug = check ? "check" : "delete"
 
     form.setAttribute("action", `/question/${roomId}/${questionId}/${slug}`)
-
+    
 
     modalTitle.innerHTML = check ? "Marcar como lido" : "Excluir"
     modalDescription.innerHTML = check ? "Tem certeza que deseja marcar como lida esta pergunta?" : "Tem certeza que deseja excluir esta pergunta?"
@@ -70,5 +70,33 @@ function cancelar() {
     window.location.href = url
 }
 
+const form = document.getElementById("question-form-form")
+form.onsubmit = (e) => {
+    e.preventDefault()
+    const question = form.elements["questionText"].value
+    const roomId = document.querySelector("#room-id").dataset.id
+    if(question == ""){
+        let url = document.URL
+        url = url + '?error=1'
+        window.location.href = url
+    }else{
+    const data = {
+        "question": question
+    }
 
+
+    fetch(`/question/create/${roomId}`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+    }).then(() => {
+        form.elements["questionText"].value = "";
+        sessionStorage.clear("autosave");
+    })
+    }
+}
 });
+
+
+
+
