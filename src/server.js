@@ -12,6 +12,7 @@ const server = http.createServer(app);
 getIO(server);
 
 const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
 
 app.set("view engine", "ejs");
 
@@ -24,5 +25,5 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(route);
 
-server.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+server.listen(PORT, HOST, () => console.log(`http://localhost:${PORT}`));
 
